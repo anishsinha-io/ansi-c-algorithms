@@ -1,0 +1,39 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "type": "shell",
+        "label": "Compile active C++ file",
+        "command": "mkdir -p ${workspaceFolder}/target/__${fileBasenameNoExtension} && /usr/bin/clang++ -std=c++17 -g ${file} -o ${workspaceFolder}/target/__${fileBasenameNoExtension}/${fileBasenameNoExtension}",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": ["$gcc"],
+        "group": "build"
+      },
+      {
+        "type": "shell",
+        "label": "Compile active C file",
+        "command": "mkdir -p ${workspaceFolder}/target/__${fileBasenameNoExtension} && /usr/bin/clang -g ${file} -o ${workspaceFolder}/target/__${fileBasenameNoExtension}/${fileBasenameNoExtension}",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": ["$gcc"],
+        "group": "build"
+      },
+      {
+        "type": "shell",
+        "label": "Run active file",
+        "command": "./target/__${fileBasenameNoExtension}/${fileBasenameNoExtension}",
+        "group": "build"
+      },
+      {
+        "type": "shell",
+        "label": "Clean target directory",
+        "command": "rm -rf target/*",
+        "group": "build"
+      }
+    ]
+  }
