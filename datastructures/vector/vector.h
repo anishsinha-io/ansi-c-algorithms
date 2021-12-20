@@ -10,7 +10,4 @@ typedef struct Vector {
   int total;
 } Vector;
 
-void vector_init(void *);
-int vector_total(vector *);
-
 #endif

@@ -15,6 +15,7 @@ int main() {
   head = delete_index(head, 2);
   head = delete_head(head);
   head = delete_end(head);
-  print_linked_list(head);
+  int index = is_in_list(head, 3);
+  printf("%d\n", index);
   return 0;
 }

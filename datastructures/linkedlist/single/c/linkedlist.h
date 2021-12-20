@@ -20,6 +20,20 @@ ListNode *create_list_node(void *data, size_t data_size) {
   return new_node;
 }
 
+// does not work with generic args
+int is_in_list(ListNode *head, int data) {
+  ListNode *it = head;
+  int i;
+  while (it != NULL) {
+    if (*(int *)it->data == data) {
+      return i;
+      break;
+    }
+    it = it->next;
+  }
+  return -1;
+}
+
 ListNode *push_start(ListNode *head, void *data, size_t data_size) {
   if (head == NULL) {
     printf("here");
