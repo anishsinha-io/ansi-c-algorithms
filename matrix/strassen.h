@@ -1,8 +1,8 @@
-#include "matrix.h"
-#include "util.h"
-
 #ifndef _STRASSEN
 #define _STRASSEN
+
+#include "matrix.h"
+#include "util.h"
 
 Matrix *strassen(Matrix *, Matrix *, Matrix *, unsigned int);
 static void strassen_r(Matrix *, Matrix *, Matrix *, int);
