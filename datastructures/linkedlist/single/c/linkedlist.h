@@ -36,7 +36,6 @@ int is_in_list(ListNode *head, int data) {
 
 ListNode *push_start(ListNode *head, void *data, size_t data_size) {
   if (head == NULL) {
-    printf("here");
     head = create_list_node(data, data_size);
   }
   ListNode *new_node = create_list_node(data, data_size);
