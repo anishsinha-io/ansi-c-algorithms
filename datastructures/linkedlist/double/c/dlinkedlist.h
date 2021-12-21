@@ -29,6 +29,7 @@ typedef struct DList {
   struct DList *(*delete_head)(struct DList *);
   struct DList *(*delete_tail)(struct DList *);
   struct DList *(*delete_index)(struct DList *, int);
+  void (*destroy)(struct DList *);
 } DList;
 
 void print_list(const DList *self) {
@@ -151,11 +152,16 @@ DList *delete_index(DList *self, int index) {
 }
 
 DList *delete_head(DList *self) {
-  DListNode *t = self->head;
-  t->next->prev = NULL;
-  self->head = t->next;
-  free(t);
-  self->length--;
+  if (self->length == 1) {
+    self->head = self->tail = NULL;
+    self->length--;
+  } else {
+    DListNode *t = self->head;
+    t->next->prev = NULL;
+    self->head = t->next;
+    free(t);
+    self->length--;
+  }
   return self;
 }
 
@@ -166,6 +172,15 @@ DList *delete_tail(DList *self) {
   free(t);
   self->length--;
   return self;
+}
+
+// Destructor
+
+void destroy(DList *self) {
+  while (self->head != NULL) {
+    self = self->delete_head(self);
+  }
+  printf("object destroyed\n");
 }
 
 // "Constructor"
@@ -181,6 +196,7 @@ DList *new_dlist() {
   new_list->delete_head = delete_head;
   new_list->delete_tail = delete_tail;
   new_list->delete_index = delete_index;
+  new_list->destroy = destroy;
   return new_list;
 }
 

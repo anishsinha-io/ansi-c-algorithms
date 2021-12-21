@@ -12,6 +12,6 @@ int main() {
   list = list->push_index(list, 12, 5);
   list = list->delete_index(list, 1);
   list = list->delete_index(list, 5);
-  list->print(list);
+  list->destroy(list);
   return 0;
 }
