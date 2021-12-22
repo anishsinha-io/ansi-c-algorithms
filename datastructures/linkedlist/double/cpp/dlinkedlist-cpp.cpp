@@ -10,6 +10,9 @@ int main() {
   list1->add_index(8, 2);
   list1->add_index(11, 3);
   list1->add_index(12, 3);
+  list1->add_index(21, 0);
+  list1->add_index(5, 8);
+  list1->delete_index(7);
   list1->print();
   return 0;
 }
