@@ -7,7 +7,9 @@ int main() {
   list1->add_to_tail(2);
   list1->add_to_head(0);
   list1->add_to_head(-1);
-  // list1->add_index(8, 2);
+  list1->add_index(8, 2);
+  list1->add_index(11, 3);
+  list1->add_index(12, 3);
   list1->print();
   return 0;
 }

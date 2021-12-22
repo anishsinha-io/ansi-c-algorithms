@@ -25,6 +25,7 @@ public:
   void print();
   void add_to_tail(const T &);
   void add_to_head(const T &);
+  void add_index(const T &, int);
   T delete_tail();
   unsigned int length;
 
@@ -47,6 +48,19 @@ template <class T> void DList<T>::add_to_head(const T &val) {
   new_node->next = t;
   t->prev = new_node;
   head = new_node;
+}
+
+template <class T> void DList<T>::add_index(const T &val, int index) {
+  DListNode<T> *new_node = new DListNode(val);
+  DListNode<T> *it = head;
+  for (int i = 0; i < index; i++) {
+    it = it->next;
+  }
+  DListNode<T> *p = it->prev;
+  p->next = new_node;
+  it->prev = new_node;
+  new_node->prev = p;
+  new_node->next = it;
 }
 
 template <class T> void DList<T>::print() {
