@@ -1,9 +1,3 @@
-/**
- * @author Anish Sinha (anishsinha0128@gmail.com)
- * @brief Implements a doubly linked list using objected-oriented patterns in C
- *        by leveraging function pointers and structs.
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -21,7 +15,6 @@ typedef struct DList {
   DListNode *tail;
   unsigned int length;
   void (*print)(const struct DList *);
-  void (*del)(const struct DList *);
   DListNode *(*_create_node)(int);
   struct DList *(*push_start)(struct DList *, int);
   struct DList *(*push_tail)(struct DList *, int);
