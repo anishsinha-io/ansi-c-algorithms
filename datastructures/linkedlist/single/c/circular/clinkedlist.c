@@ -10,6 +10,8 @@ int main() {
   printf("%d\n", list1->tail->val);
   list1 = list1->push_tail(list1, 3);
   printf("%d\n", list1->tail->val);
-
+  list1 = list1->push_start(list1, 8);
+  printf("here");
+  printf("%d\n", list1->tail->next->next->next->val);
   return 0;
 }

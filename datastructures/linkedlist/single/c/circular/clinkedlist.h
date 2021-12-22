@@ -44,11 +44,28 @@ CList *push_tail(CList *self, int val) {
   return self;
 }
 
+CList *push_start(CList *self, int val) {
+  CListNode *new_node = self->_create_node(val);
+  if (self->is_empty(self)) {
+    self->tail = new_node;
+    new_node->next = self->tail;
+  } else {
+    CListNode *t = self->tail;
+    while (t->next != t) {
+      t = t->next;
+    }
+    t->next = new_node;
+    new_node->next = self->tail;
+  }
+  return self;
+}
+
 CList *new_clist() {
   CList *new_list = malloc(sizeof(CList));
   new_list->is_empty = is_empty;
   new_list->_create_node = _create_node;
   new_list->push_tail = push_tail;
+  new_list->push_start = push_start;
   return new_list;
 }
 
