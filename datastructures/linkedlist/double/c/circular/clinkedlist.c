@@ -11,7 +11,8 @@ int main() {
   list1 = list1->push_index(list1, 4, 0);
   list1 = list1->push_index(list1, 12, 6);
   list1 = list1->delete_head(list1);
+  list1 = list1->delete_tail(list1);
   list1->print(list1);
-  printf("other side: %d\n", list1->length);
+  printf("\nother side: %d\n", list1->length);
   return 0;
 }
