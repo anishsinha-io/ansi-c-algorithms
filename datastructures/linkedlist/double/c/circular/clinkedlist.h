@@ -148,6 +148,30 @@ CList *delete_tail(CList *self) {
   return self;
 }
 
+CList *delete_index(CList *self, int index) {
+  if (index > self->length) {
+    printf("cannot shift element at index %d from list of length %d!", index,
+           self->length);
+    return self;
+  } else if (index == 0) {
+    return self->delete_head(self);
+  } else if (index == self->length) {
+    return self->delete_tail(self);
+  } else {
+    CListNode *it = self->entry;
+    for (int i = 0; i < index; i++) {
+      it = it->next;
+    }
+    CListNode *p = it->prev;
+    CListNode *n = it->next;
+    p->next = n;
+    n->prev = p;
+    free(it);
+  }
+  self->length--;
+  return self;
+}
+
 void print(const CList *self) {
   CListNode *it = self->entry;
   for (int i = 0; i < self->length; i++) {
@@ -169,6 +193,7 @@ CList *new_clist() {
   new_clist->get_length = get_length;
   new_clist->delete_head = delete_head;
   new_clist->delete_tail = delete_tail;
+  new_clist->delete_index = delete_index;
   return new_clist;
 }
 #endif
