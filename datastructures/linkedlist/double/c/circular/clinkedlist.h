@@ -105,6 +105,29 @@ CList *push_index(CList *self, int val, int index) {
   return self;
 }
 
+CList *delete_head(CList *self) {
+  if (self->length == 0) {
+    printf("cannot shift element from front of an empty list!");
+    return self;
+
+  } else if (self->length == 1) {
+    self->length = 0;
+    self->entry = NULL;
+    free(self->entry);
+    return self;
+  }
+
+  else {
+    CListNode *p = self->entry->prev;
+    CListNode *n = self->entry->next;
+    p->next = n;
+    n->prev = p;
+    self->entry = n;
+  }
+  self->length--;
+  return self;
+}
+
 void print(const CList *self) {
   CListNode *it = self->entry;
   for (int i = 0; i < self->length; i++) {
@@ -124,6 +147,7 @@ CList *new_clist() {
   new_clist->push_index = push_index;
   new_clist->print = print;
   new_clist->get_length = get_length;
+  new_clist->delete_head = delete_head;
   return new_clist;
 }
 #endif
