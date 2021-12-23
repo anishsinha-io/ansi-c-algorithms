@@ -21,13 +21,14 @@ typedef struct CList {
 
   void (*print)(const struct CList *);
   bool (*is_empty)(const struct CList *);
+  unsigned int (*get_length)(const struct CList *);
   CListNode *(*_create_node)(int val);
 
   // main methods
 
   struct CList *(*push_head)(struct CList *, int val);
   struct CList *(*push_tail)(struct CList *, int val);
-  struct CList *(*push_index)(struct CList *, int val);
+  struct CList *(*push_index)(struct CList *, int val, int index);
 
   struct CList *(*delete_head)(struct CList *);
   struct CList *(*delete_tail)(struct CList *);
@@ -78,6 +79,32 @@ CList *push_tail(CList *self, int val) {
   return self;
 }
 
+CList *push_index(CList *self, int val, int index) {
+  CListNode *new_node = self->_create_node(val);
+  if (index > self->length) {
+    printf("specified index %d out of range for list with length %d!", index,
+           self->length);
+  } else if (index == 0) {
+    return self->push_head(self, val);
+  } else if (index == self->length) {
+    return self->push_tail(self, val);
+  }
+
+  else {
+    CListNode *it = self->entry;
+    for (int i = 0; i < index; i++) {
+      it = it->next;
+    }
+    CListNode *p = it->prev;
+    p->next = new_node;
+    new_node->prev = p;
+    new_node->next = it;
+    it->prev = new_node;
+  }
+  self->length++;
+  return self;
+}
+
 void print(const CList *self) {
   CListNode *it = self->entry;
   for (int i = 0; i < self->length; i++) {
@@ -86,13 +113,17 @@ void print(const CList *self) {
   }
 }
 
+unsigned int get_length(const CList *self) { return self->length; }
+
 CList *new_clist() {
   CList *new_clist = malloc(sizeof(CList));
   new_clist->_create_node = _create_node;
   new_clist->length = 0;
   new_clist->push_head = push_head;
   new_clist->push_tail = push_tail;
+  new_clist->push_index = push_index;
   new_clist->print = print;
+  new_clist->get_length = get_length;
   return new_clist;
 }
 #endif
