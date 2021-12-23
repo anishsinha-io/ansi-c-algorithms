@@ -65,14 +65,13 @@ CList *push_tail(CList *self, int val) {
   CListNode *new_node = self->_create_node(val);
   if (self->length == 0) {
     self->entry = new_node;
+    new_node->prev = self->entry;
     new_node->next = self->entry;
+
   } else {
-    CListNode *t = self->entry->prev;
-    if (t != NULL) {
-      t->next = new_node;
-      new_node->prev = t;
-    }
     new_node->next = self->entry;
+    new_node->prev = self->entry->prev;
+    self->entry->prev->next = new_node;
     self->entry->prev = new_node;
   }
   self->length++;
