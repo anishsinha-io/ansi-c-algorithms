@@ -8,6 +8,10 @@ int main() {
   list1->push_head(2);
   list1->push_head(1);
   list1->push_tail(5);
+  list1->push_index(8, 2);
+  list1->push_index(9, 2);
+  list1->delete_tail();
+  list1->delete_index(3);
   list1->print();
   return 0;
 }
