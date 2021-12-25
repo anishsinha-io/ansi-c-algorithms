@@ -1,14 +1,9 @@
-#include "slist.h"
+#include "models.h"
 #include <math.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 #ifndef _SLIST_UTIL
 #define _SLIST_UTIL
-
-typedef struct SListUtil {
-  unsigned int (*lg)(unsigned int);
-} SListUtil;
 
 unsigned int lg(unsigned int length) {
   return (unsigned int)log(length) / log(2);

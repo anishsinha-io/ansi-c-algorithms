@@ -1,14 +1,8 @@
-
+#include "models.h"
+#include <math.h>
 
 #ifndef _SLIST
 #define _SLIST
-
-#include "models.h"
-#include "slist-util.h"
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 SListNode *_create_sentinel(SIGN sign) {
   SListNode *new_sentinel = malloc(sizeof(SListNode));

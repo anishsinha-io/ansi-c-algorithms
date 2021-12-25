@@ -1,4 +1,3 @@
-#include "slist-util.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,6 +16,10 @@ typedef struct SListNode {
   struct SListNode *top;
   bool is_sentinel;
 } SListNode;
+
+typedef struct SListUtil {
+  unsigned int (*lg)(unsigned int);
+} SListUtil;
 
 typedef struct SList {
   unsigned int length;
