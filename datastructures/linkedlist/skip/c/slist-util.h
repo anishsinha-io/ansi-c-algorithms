@@ -6,7 +6,7 @@
 #define _SLIST_UTIL
 
 unsigned int lg(unsigned int length) {
-  return (unsigned int)log(length) / log(2);
+  return (unsigned int)(log(length) / log(2));
 }
 
 SListUtil *new_slist_util() {

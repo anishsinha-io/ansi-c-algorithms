@@ -5,7 +5,7 @@
 #ifndef _SLIST_MODELS
 #define _SLIST_MODELS
 
-typedef enum SIGN { positive = 1, negative = -1 } SIGN;
+typedef enum { negative = -1, positive = 1 } SIGN;
 
 typedef struct SListNode {
   double val;
@@ -28,7 +28,7 @@ typedef struct SList {
   SListNode *tail;
   SListNode *left_sentinel;
   SListNode *right_sentinel;
-  SListNode *(*_create_sentinel)(SIGN);
+  SListNode *(*_create_sentinel)(unsigned int, SIGN sign);
   SListNode *(*_create_node)(double, unsigned int);
   void *(*push_head)(double);
   double *(*delete_head)(void);
